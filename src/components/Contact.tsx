@@ -3,8 +3,16 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import { Mail, Phone, Linkedin, Send } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { toast } from "sonner";
+import emailjs from "@emailjs/browser";
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, { message: "Name is required" }).max(100, { message: "Name must be less than 100 characters" }),
+  email: z.string().trim().email({ message: "Invalid email address" }).max(255, { message: "Email must be less than 255 characters" }),
+  message: z.string().trim().min(1, { message: "Message is required" }).max(1000, { message: "Message must be less than 1000 characters" })
+});
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -12,11 +20,41 @@ const Contact = () => {
     email: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Message sent! I'll get back to you soon.");
-    setFormData({ name: "", email: "", message: "" });
+    
+    // Validate form data
+    try {
+      contactSchema.parse(formData);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        toast.error(error.errors[0].message);
+        return;
+      }
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      if (formRef.current) {
+        await emailjs.sendForm(
+          'service_oyq3uk3',
+          'template_f6sm2om',
+          formRef.current,
+          'mmTWz0KCvxRPiKJ0P'
+        );
+        toast.success("Message sent! I'll get back to you soon.");
+        setFormData({ name: "", email: "", message: "" });
+      }
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      toast.error("Failed to send message. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -53,16 +91,18 @@ const Contact = () => {
         <div className="grid md:grid-cols-2 gap-12">
           {/* Contact Form */}
           <Card className="p-8 bg-card border-border animate-slide-in">
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                   Name
                 </label>
                 <Input
                   id="name"
+                  name="from_name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
+                  disabled={isSubmitting}
                   className="bg-muted border-border focus:border-primary"
                 />
               </div>
@@ -73,10 +113,12 @@ const Contact = () => {
                 </label>
                 <Input
                   id="email"
+                  name="from_email"
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
+                  disabled={isSubmitting}
                   className="bg-muted border-border focus:border-primary"
                 />
               </div>
@@ -87,9 +129,11 @@ const Contact = () => {
                 </label>
                 <Textarea
                   id="message"
+                  name="message"
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   required
+                  disabled={isSubmitting}
                   rows={5}
                   className="bg-muted border-border focus:border-primary resize-none"
                 />
@@ -97,10 +141,11 @@ const Contact = () => {
               
               <Button 
                 type="submit" 
+                disabled={isSubmitting}
                 className="w-full bg-gradient-primary hover:shadow-primary transition-all duration-300"
               >
                 <Send className="mr-2 h-4 w-4" />
-                Send Message
+                {isSubmitting ? "Sending..." : "Send Message"}
               </Button>
             </form>
           </Card>
