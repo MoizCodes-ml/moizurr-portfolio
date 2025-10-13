@@ -6,6 +6,15 @@ const Hero = () => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const handleDownloadCV = () => {
+    const link = document.createElement('a');
+    link.href = '/CV_Moiz.pdf';
+    link.download = 'CV_Moiz_Ur_Rehman.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center px-6 py-20">
       <div className="max-w-6xl mx-auto w-full">
@@ -42,6 +51,7 @@ const Hero = () => {
                 size="lg" 
                 variant="outline"
                 className="border-secondary text-secondary hover:bg-secondary hover:text-secondary-foreground transition-all duration-300"
+                onClick={handleDownloadCV}
               >
                 <Download className="mr-2 h-4 w-4" />
                 Download CV
