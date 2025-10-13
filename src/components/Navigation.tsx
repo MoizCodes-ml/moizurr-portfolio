@@ -47,7 +47,7 @@ const Navigation = () => {
             }}
             className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent"
           >
-            Moiz UR
+            Moiz Ur Rehman
           </a>
 
           {/* Desktop Navigation */}

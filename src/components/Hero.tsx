@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download } from "lucide-react";
-import profilePhoto from "@/assets/profile-photo.jpg";
 
 const Hero = () => {
   const scrollToSection = (id: string) => {
@@ -56,7 +55,7 @@ const Hero = () => {
               <div className="absolute inset-0 bg-gradient-primary rounded-full blur-2xl opacity-30 animate-glow"></div>
               <div className="relative w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-primary shadow-primary">
                 <img 
-                  src={profilePhoto} 
+                  src="https://i.postimg.cc/ZRwmJsLx/Profile.jpg" 
                   alt="Moiz Ur Rehman - ML/AI Engineer" 
                   className="w-full h-full object-cover"
                 />
