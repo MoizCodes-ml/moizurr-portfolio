@@ -4,14 +4,14 @@ import { Card } from "@/components/ui/card";
 const About = () => {
   const education = [
     {
-      degree: "Bachelors of Science in Software Engineering",
-      institution: "Institute of Management Sciences, Peshawar",
-      period: "Oct 2021 – Jun 2025",
-    },
-    {
       degree: "Data Analysis",
       institution: "Institute of Emerging Careers",
       period: "Jun 2025 – Present",
+    },
+    {
+      degree: "Bachelors of Science in Software Engineering",
+      institution: "Institute of Management Sciences, Peshawar",
+      period: "Oct 2021 – Jun 2025",
     },
   ];
 
