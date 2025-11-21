@@ -1,5 +1,5 @@
 import { Card } from "@/components/ui/card";
-import { ExternalLink, Car, Hand, TestTube2 } from "lucide-react";
+import { ExternalLink, Car, Hand, ShoppingCart, UtensilsCrossed } from "lucide-react";
 
 const Projects = () => {
   const projects = [
@@ -16,10 +16,18 @@ const Projects = () => {
       technologies: ["Computer Vision", "OpenCV", "TensorFlow", "Real-time Processing"],
     },
     {
-      icon: TestTube2,
-      title: "OrangeHRM Web App Testing",
-      description: "Manual, automated, and API testing conducted on a dummy website, focusing on bug detection and quality assurance.",
-      technologies: ["Manual Testing", "Automated Testing", "Postman API", "QA Methodology"],
+      icon: ShoppingCart,
+      title: "Brazilian E-Commerce by Olist Analysis",
+      description: "Analyzed over 100,000 orders from the Brazilian e-commerce platform Olist, focusing on identifying key insights and trends. Developed complex SQL queries and built Power BI dashboards for visualizing sales trends, customer demographics, and product performance.",
+      technologies: ["MySQL", "Power BI", "Data Analysis", "SQL"],
+      link: "https://github.com/MoizCodes-ml/Brazilian-E-Commerce-by-Olist-Analysis",
+    },
+    {
+      icon: UtensilsCrossed,
+      title: "Restaurant Performance Analysis",
+      description: "Analyzed a restaurant customers' orders dataset from Kaggle, focusing on extracting key insights to improve business strategies. Built Power BI dashboards for visualizing key metrics like customer orders, monthly sales trends, and member totals.",
+      technologies: ["MySQL", "Power BI", "Data Analysis", "Excel"],
+      link: "https://github.com/MoizCodes-ml/Restaurant-Performance-Analysis",
     },
   ];
 
@@ -39,6 +47,7 @@ const Projects = () => {
               key={index}
               className="p-6 bg-card border-border hover:border-primary transition-all duration-300 hover:shadow-card animate-fade-in group cursor-pointer"
               style={{ animationDelay: `${index * 0.1}s` }}
+              onClick={() => project.link && window.open(project.link, '_blank')}
             >
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-lg bg-gradient-secondary flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -64,10 +73,12 @@ const Projects = () => {
                   ))}
                 </div>
                 
-                <div className="pt-2 flex items-center gap-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-                  <span className="text-sm font-medium">View Details</span>
-                  <ExternalLink size={16} />
-                </div>
+                {project.link && (
+                  <div className="pt-2 flex items-center gap-2 text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                    <span className="text-sm font-medium">View on GitHub</span>
+                    <ExternalLink size={16} />
+                  </div>
+                )}
               </div>
             </Card>
           ))}
