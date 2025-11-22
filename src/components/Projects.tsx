@@ -4,8 +4,25 @@ import { ExternalLink, Car, Hand, ShoppingCart, UtensilsCrossed } from "lucide-r
 const Projects = () => {
   const projects = [
     {
+      icon: UtensilsCrossed,
+      title: "Restaurant Performance Analysis",
+      date: "Sep 2025 - Nov 2025",
+      description: "Analyzed a restaurant customers' orders dataset from Kaggle, focusing on extracting key insights to improve business strategies. Built Power BI dashboards for visualizing key metrics like customer orders, monthly sales trends, and member totals.",
+      technologies: ["MySQL", "Power BI", "Data Analysis", "Excel"],
+      link: "https://github.com/MoizCodes-ml/Restaurant-Performance-Analysis",
+    },
+    {
+      icon: ShoppingCart,
+      title: "Brazilian E-Commerce by Olist Analysis",
+      date: "Jun 2025 - Aug 2025",
+      description: "Analyzed over 100,000 orders from the Brazilian e-commerce platform Olist, focusing on identifying key insights and trends. Developed complex SQL queries and built Power BI dashboards for visualizing sales trends, customer demographics, and product performance.",
+      technologies: ["MySQL", "Power BI", "Data Analysis", "SQL"],
+      link: "https://github.com/MoizCodes-ml/Brazilian-E-Commerce-by-Olist-Analysis",
+    },
+    {
       icon: Car,
       title: "Sunshine Rental Services",
+      date: "Sep 2024 - Jun 2025",
       description: "A full-featured mobile app for Sunshine Passengers and Transport LLC (Dubai), offering purchasing, renting, and leasing vehicles with an integrated recommender system for fair pricing.",
       technologies: ["Mobile Development", "ML Recommender System", "React Native", "Python"],
       link: "https://github.com/MoizCodes-ml/Sunshine-Rental-Services",
@@ -13,22 +30,9 @@ const Projects = () => {
     {
       icon: Hand,
       title: "Hand Detection Tracker",
+      date: "Dec 2024 - Jan 2025",
       description: "A real-time hand detection and tracking system for gesture-based interaction, with applications in AR/VR interfaces.",
       technologies: ["Computer Vision", "OpenCV", "TensorFlow", "Real-time Processing"],
-    },
-    {
-      icon: ShoppingCart,
-      title: "Brazilian E-Commerce by Olist Analysis",
-      description: "Analyzed over 100,000 orders from the Brazilian e-commerce platform Olist, focusing on identifying key insights and trends. Developed complex SQL queries and built Power BI dashboards for visualizing sales trends, customer demographics, and product performance.",
-      technologies: ["MySQL", "Power BI", "Data Analysis", "SQL"],
-      link: "https://github.com/MoizCodes-ml/Brazilian-E-Commerce-by-Olist-Analysis",
-    },
-    {
-      icon: UtensilsCrossed,
-      title: "Restaurant Performance Analysis",
-      description: "Analyzed a restaurant customers' orders dataset from Kaggle, focusing on extracting key insights to improve business strategies. Built Power BI dashboards for visualizing key metrics like customer orders, monthly sales trends, and member totals.",
-      technologies: ["MySQL", "Power BI", "Data Analysis", "Excel"],
-      link: "https://github.com/MoizCodes-ml/Restaurant-Performance-Analysis",
     },
   ];
 
@@ -58,6 +62,10 @@ const Projects = () => {
                 <h3 className="text-xl font-semibold text-foreground group-hover:text-primary transition-colors">
                   {project.title}
                 </h3>
+                
+                <p className="text-sm text-accent font-medium">
+                  {project.date}
+                </p>
                 
                 <p className="text-muted-foreground leading-relaxed">
                   {project.description}
