@@ -8,6 +8,7 @@ const Projects = () => {
       title: "Sunshine Rental Services",
       description: "A full-featured mobile app for Sunshine Passengers and Transport LLC (Dubai), offering purchasing, renting, and leasing vehicles with an integrated recommender system for fair pricing.",
       technologies: ["Mobile Development", "ML Recommender System", "React Native", "Python"],
+      link: "https://github.com/MoizCodes-ml/Sunshine-Rental-Services",
     },
     {
       icon: Hand,
