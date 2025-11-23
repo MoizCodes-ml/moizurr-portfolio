@@ -29,10 +29,11 @@ const Projects = () => {
     },
     {
       icon: Hand,
-      title: "Hand Detection Tracker",
+      title: "Hand Gesture Recognition",
       date: "Dec 2024 - Jan 2025",
       description: "A real-time hand detection and tracking system for gesture-based interaction, with applications in AR/VR interfaces.",
       technologies: ["Computer Vision", "OpenCV", "TensorFlow", "Real-time Processing"],
+      link: "https://github.com/MoizCodes-ml/Hand-Gesture-Recognition",
     },
   ];
 
